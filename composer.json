@@ -1,0 +1,56 @@
+{
+    "name": "perfect-oblivion/responders",
+    "description": "Responder Implementation for Laravel Projects",
+    "version": "1.0.0",
+    "keywords": [
+        "perfect-oblivion",
+        "responders",
+        "adr",
+        "laravel"
+    ],
+    "homepage": "https://github.com/perfect-oblivion/responders",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clayton Stone",
+            "email": "clay@perfectoblivion.com",
+            "homepage": "https://perfectoblivion.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "perfect-oblivion/payload": "^0.1",
+        "laravel/framework": "5.7.* || 5.8.*",
+        "devmarketer/laraflash": "1.3.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "orchestra/testbench": "~3.7",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PerfectOblivion\\Responder\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PerfectOblivion\\Responder\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PerfectOblivion\\Responder\\ResponderServiceProvider"
+            ]
+        }
+    }
+}
