@@ -6,7 +6,7 @@ php:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=
+    - CC_TEST_REPORTER_ID=2455df38683c41e20b220610624eb9504fdc864567c3842ae870df4ec476361b
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
   matrix:
