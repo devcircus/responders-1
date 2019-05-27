@@ -56,7 +56,6 @@ Then in your responder:
 ```php
 namespace App\Http\Responders\Post;
 
-use Illuminate\Http\Request;
 use PerfectOblivion\Responder\Responder;
 
 class IndexResponder extends Responder
@@ -64,21 +63,17 @@ class IndexResponder extends Responder
     /**
      * Send a response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|null  $data
-     *
      * @return mixed
      */
     public function respond()
     {
-        if ($request->isApi()) { // isApi() is not part of this package
+        if (request()->isApi()) { // isApi() is not part of this package
             // return json
         }
 
         return $this->view('posts.index', ['posts' => $this->payload]);
     }
 }
-
 ```
 
 The benefit over the traditional "handle the response inside your controller actions", is the clarity it brings, the narrow class responsibility, fewer dependencies in your controller and overall organization. When used together with [single action controllers](https://laravel.com/docs/5.6/controllers#single-action-controllers), you can really clean up your controllers and bring a lot of clarity to your codebase.
@@ -146,6 +141,40 @@ public function index(Request $request)
     // return $this->responder;
     return $this->responder->withPayload($data);
 }
+```
+
+> Note: Responders implement the Laravel's Responsable interface. From your controllers/actions if you return the responder object, the ```respond()``` method of your responder, will automatically be called. If you're in a situation where you are returning an object the implements Responsable from your ```respond()``` method, you'll need to explicitly call the ```respond()``` method from your controller or action. For example, using the [inertiajs/inertia-laravel](https://github.com/inertiajs/inertia-laravel) package, the ```Inertia::render``` method gives you a responsable object. If you're returning ```Inertia::render``` from your responder, you need to explicitly call the ```respond()``` method of your responder from your controller or action. See the example code below.
+
+```php
+// MyController.php
+public function index(Request $request)
+{
+    $data = MyDatasource::getSomeData();
+
+    // return $this->responder->respond();
+    return $this->responder->withPayload($data)->respond();
+}
+```
+
+```php
+namespace App\Http\Responders\Post;
+
+use Inertia\Inertia;
+use PerfectOblivion\Responder\Responder;
+
+class IndexResponder extends Responder
+{
+    /**
+     * Send a response.
+     *
+     * @return mixed
+     */
+    public function respond()
+    {
+        return Inertia::render('Posts/Index', ['posts' => $this->payload]);
+    }
+}
+```
 
 ### Testing
 
