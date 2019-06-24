@@ -8,18 +8,13 @@ use Illuminate\Contracts\Support\Responsable;
 
 abstract class Responder implements Responsable
 {
-    /**
-     * The response payload.
-     *
-     * @var mixed
-     */
+    /** @var mixed */
     protected $payload;
 
-    /**
-     * Laraflash for flashing to session.
-     *
-     * @var \DevMarketer\LaraFlash\LaraFlash
-     */
+    /** @var \Illuminate\Http\Request */
+    protected $request;
+
+    /** @var \DevMarketer\LaraFlash\LaraFlash */
     protected $flash;
 
     /**
@@ -68,7 +63,7 @@ abstract class Responder implements Responsable
     }
 
     /**
-     * Add the request to the response.
+     * Add the request to the response. Allows FormRequest objects to be added to the responder.
      *
      * @param  \Illuminate\Http\Request  $request
      *

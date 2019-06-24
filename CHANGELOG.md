@@ -9,3 +9,7 @@ All notable changes to perfect-oblivion/responders will be documented in this fi
 ## 0.1.1 - 05/27/2019
 
 -   Explain the ```Responsable``` interface in the README.
+
+## 0.1.2 - 06/23/2019
+
+-   Add request property to Responder class.
