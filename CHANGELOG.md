@@ -13,3 +13,7 @@ All notable changes to perfect-oblivion/responders will be documented in this fi
 ## 0.1.2 - 06/23/2019
 
 -   Add request property to Responder class.
+
+## 0.2.0 - 09/03/2019
+
+-   Support Laravel 6.
