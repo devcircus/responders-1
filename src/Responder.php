@@ -3,7 +3,6 @@
 namespace PerfectOblivion\Responder;
 
 use Illuminate\Http\Request;
-use DevMarketer\LaraFlash\LaraFlash;
 use Illuminate\Contracts\Support\Responsable;
 
 abstract class Responder implements Responsable
@@ -14,19 +13,14 @@ abstract class Responder implements Responsable
     /** @var \Illuminate\Http\Request */
     protected $request;
 
-    /** @var \DevMarketer\LaraFlash\LaraFlash */
-    protected $flash;
-
     /**
      * Construct a new base Responder.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \DevMarketer\LaraFlash\LaraFlash  $flash
      */
-    public function __construct(Request $request, LaraFlash $flash)
+    public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->flash = $flash;
     }
 
     /**
@@ -74,16 +68,5 @@ abstract class Responder implements Responsable
         $this->request = $request;
 
         return $this;
-    }
-
-    /**
-     * Flash data to the session.
-     *
-     * @param  string $key
-     * @param  mixed  $value
-     */
-    protected function flash($message, array $options = [])
-    {
-        return $this->flash->add($message, $options);
     }
 }

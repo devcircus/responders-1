@@ -17,3 +17,7 @@ All notable changes to perfect-oblivion/responders will be documented in this fi
 ## 0.2.0 - 09/03/2019
 
 -   Support Laravel 6.
+
+## 0.3.0 - 10/17/2019
+
+-   Remove the LaraFlash package.
